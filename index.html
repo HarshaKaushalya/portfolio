@@ -479,6 +479,22 @@
             -webkit-mask-image: linear-gradient(to right, rgba(0,0,0,1) 50%, rgba(0,0,0,0) 100%);
             pointer-events: none;
         }
+        .about-img-floating {
+            position: absolute;
+            left: -5%;
+            top: 10%;
+            width: 400px;
+            height: 450px;
+            object-fit: cover;
+            border-radius: 30px;
+            opacity: 0.15;
+            mix-blend-mode: luminosity;
+            mask-image: radial-gradient(circle at center, rgba(0,0,0,1) 30%, rgba(0,0,0,0) 70%);
+            -webkit-mask-image: radial-gradient(circle at center, rgba(0,0,0,1) 30%, rgba(0,0,0,0) 70%);
+            animation: float 14s ease-in-out infinite;
+            z-index: 0;
+            pointer-events: none;
+        }
         .about-content {
             display: grid;
             grid-template-columns: 1fr 1.5fr;
@@ -1245,6 +1261,7 @@
     <section id="about" class="about section-padding glass" style="margin: 0 2%; border-radius: 20px; overflow: hidden; position: relative;">
         <!-- Matrix Rain Canvas -->
         <canvas id="matrix-canvas"></canvas>
+        <img src="electronics2.jpg" alt="Electronics Background" class="about-img-floating">
         <div class="container">
             <h2 class="section-title fade-in">About <span>Me</span></h2>
             
