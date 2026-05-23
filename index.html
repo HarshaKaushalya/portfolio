@@ -471,12 +471,12 @@
             position: absolute;
             top: 0;
             left: 0;
-            width: 300px;
+            width: 500px;
             height: 100%;
             z-index: -1;
-            opacity: 0.15;
-            mask-image: linear-gradient(to right, rgba(0,0,0,1) 30%, rgba(0,0,0,0) 100%);
-            -webkit-mask-image: linear-gradient(to right, rgba(0,0,0,1) 30%, rgba(0,0,0,0) 100%);
+            opacity: 0.4;
+            mask-image: linear-gradient(to right, rgba(0,0,0,1) 50%, rgba(0,0,0,0) 100%);
+            -webkit-mask-image: linear-gradient(to right, rgba(0,0,0,1) 50%, rgba(0,0,0,0) 100%);
             pointer-events: none;
         }
         .about-content {
@@ -1918,13 +1918,13 @@
         const mCtx = mCanvas.getContext('2d');
 
         function resizeMatrix() {
-            mCanvas.width = 300;
+            mCanvas.width = 500;
             mCanvas.height = mCanvas.offsetHeight || 800;
         }
         resizeMatrix();
 
         const matrixChars = "01";
-        const mFontSize = 14;
+        const mFontSize = 18;
         const mColumns = Math.floor(mCanvas.width / mFontSize);
         const mDrops = [];
 
