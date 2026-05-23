@@ -469,18 +469,17 @@
         }
         #gemini-glow-bg {
             position: absolute;
-            top: 0;
-            left: -20%;
-            width: 80%;
-            height: 100%;
+            top: calc(50% - 600px);
+            left: -600px;
+            width: 1200px;
+            height: 1200px;
             z-index: -2;
             background: conic-gradient(from 0deg, var(--primary), var(--secondary), #ff007f, var(--secondary), var(--primary));
             opacity: 0;
-            filter: blur(100px);
+            filter: blur(150px);
             pointer-events: none;
             mix-blend-mode: screen;
-            mask-image: radial-gradient(ellipse at center left, black 20%, transparent 70%);
-            -webkit-mask-image: radial-gradient(ellipse at center left, black 20%, transparent 70%);
+            border-radius: 50%;
             animation: spin 15s linear infinite;
         }
         .about-img-floating {
