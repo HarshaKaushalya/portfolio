@@ -466,23 +466,7 @@
         .about {
             position: relative;
         }
-        #gemini-glow-bg {
-            position: absolute;
-            top: calc(50% - 600px);
-            left: -600px;
-            width: 1200px;
-            height: 1200px;
-            z-index: -2;
-            background: conic-gradient(from 0deg, var(--primary), var(--secondary), #ff007f, var(--secondary), var(--primary));
-            opacity: 0;
-            mask-image: radial-gradient(circle at center, black 0%, transparent 60%);
-            -webkit-mask-image: radial-gradient(circle at center, black 0%, transparent 60%);
-            pointer-events: none;
-            mix-blend-mode: screen;
-            border-radius: 50%;
-            animation: spin 15s linear infinite;
-            will-change: transform, opacity;
-        }
+
         .about-img-floating {
             position: absolute;
             right: 0;
@@ -1264,8 +1248,7 @@
 
     <!-- About Section -->
     <section id="about" class="about section-padding glass" style="margin: 0 2%; border-radius: 20px; overflow: hidden; position: relative;">
-        <!-- Gemini Glow Background -->
-        <div id="gemini-glow-bg"></div>
+
         <img src="electronics2.jpg" alt="Electronics Background" class="about-img-floating">
         <div class="container">
             <h2 class="section-title fade-in">About <span>Me</span></h2>
@@ -1936,17 +1919,7 @@
             }
         });
 
-        // --- Gemini Glow Scroll Effect ---
-        gsap.to("#gemini-glow-bg", {
-            scrollTrigger: {
-                trigger: "#about",
-                start: "top 80%",
-                end: "bottom 20%",
-                scrub: true
-            },
-            opacity: 0.8,
-            ease: "power1.inOut"
-        });
+
     </script>
 </body>
 </html>
