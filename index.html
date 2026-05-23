@@ -159,6 +159,38 @@
             100% { background-position: 0 500px; }
         }
 
+        /* Video Background */
+        .video-background-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -3;
+            overflow: hidden;
+        }
+        #bg-video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0.15;
+            transition: opacity 0.3s;
+        }
+        [data-theme="light"] #bg-video {
+            opacity: 0.05;
+        }
+        .video-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(10, 10, 15, 0.7);
+        }
+        [data-theme="light"] .video-overlay {
+            background: rgba(248, 250, 252, 0.8);
+        }
+
         /* Utility Classes */
         .glass {
             background: var(--card-bg);
@@ -1082,7 +1114,13 @@
     </div>
 
     <!-- Backgrounds -->
-    <canvas id="three-canvas"></canvas>
+    <div class="video-background-container">
+        <!-- We use a placeholder here. You can replace 'background.mp4' with your own video file later -->
+        <video id="bg-video" autoplay loop muted playsinline>
+            <source src="background.mp4" type="video/mp4">
+        </video>
+        <div class="video-overlay"></div>
+    </div>
     <canvas id="particles-canvas"></canvas>
     <div class="circuit-overlay"></div>
 
@@ -1459,7 +1497,6 @@
     <button id="back-to-top" title="Back to top"><i class="fas fa-arrow-up"></i></button>
 
     <!-- Scripts -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/typed.js/2.0.12/typed.min.js"></script>
@@ -1607,84 +1644,7 @@
             cursorChar: '|'
         });
 
-        // --- THREE.js Background ---
-        const canvas = document.getElementById('three-canvas');
-        const scene = new THREE.Scene();
-        const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
-        const renderer = new THREE.WebGLRenderer({ canvas: canvas, alpha: true, antialias: true });
-
-        renderer.setSize(window.innerWidth, window.innerHeight);
-        renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
-
-        const geometries = [];
-        const material = new THREE.MeshBasicMaterial({ 
-            color: 0x00d4ff, 
-            wireframe: true,
-            transparent: true,
-            opacity: 0.15
-        });
-
-        // Add Torus Knot
-        const torusGeometry = new THREE.TorusKnotGeometry(4, 0.8, 100, 16);
-        const torusKnot = new THREE.Mesh(torusGeometry, material);
-        torusKnot.position.set(0, 0, -15);
-        scene.add(torusKnot);
-
-        // Add floating icosahedrons
-        for(let i = 0; i < 8; i++) {
-            const geometry = new THREE.IcosahedronGeometry(Math.random() * 2 + 0.5, 0);
-            const mesh = new THREE.Mesh(geometry, material);
-            
-            mesh.position.set(
-                (Math.random() - 0.5) * 30,
-                (Math.random() - 0.5) * 30,
-                (Math.random() - 0.5) * 15 - 10
-            );
-            
-            mesh.userData = {
-                rotationSpeed: {
-                    x: (Math.random() - 0.5) * 0.01,
-                    y: (Math.random() - 0.5) * 0.01,
-                    z: (Math.random() - 0.5) * 0.01
-                },
-                floatSpeed: Math.random() * 0.005 + 0.002,
-                floatOffset: Math.random() * Math.PI * 2
-            };
-            
-            scene.add(mesh);
-            geometries.push(mesh);
-        }
-
-        camera.position.z = 5;
-
-        function animateThree() {
-            requestAnimationFrame(animateThree);
-            
-            const time = Date.now() * 0.001;
-
-            torusKnot.rotation.x += 0.002;
-            torusKnot.rotation.y += 0.003;
-            torusKnot.position.y = Math.sin(time * 0.5) * 1.5;
-
-            geometries.forEach(mesh => {
-                mesh.rotation.x += mesh.userData.rotationSpeed.x;
-                mesh.rotation.y += mesh.userData.rotationSpeed.y;
-                mesh.rotation.z += mesh.userData.rotationSpeed.z;
-                mesh.position.y += Math.sin(time + mesh.userData.floatOffset) * 0.02;
-            });
-
-            // Update theme colors
-            if(isLight) {
-                material.color.setHex(0x0284c7);
-                material.opacity = 0.2;
-            } else {
-                material.color.setHex(0x00d4ff);
-                material.opacity = 0.15;
-            }
-
-            renderer.render(scene, camera);
-        }
-        animateThree();
+        // --- THREE.js Background removed ---
 
         // --- Particles System ---
         const pCanvas = document.getElementById('particles-canvas');
@@ -1698,9 +1658,6 @@
         }
         window.addEventListener('resize', () => {
             resizeParticles();
-            camera.aspect = window.innerWidth / window.innerHeight;
-            camera.updateProjectionMatrix();
-            renderer.setSize(window.innerWidth, window.innerHeight);
         });
         resizeParticles();
 
@@ -1734,6 +1691,24 @@
         function animateParticles() {
             ctx.clearRect(0, 0, w, h);
             particles.forEach(p => { p.update(); p.draw(); });
+            
+            // Draw circuit connections
+            for (let i = 0; i < particles.length; i++) {
+                for (let j = i + 1; j < particles.length; j++) {
+                    const dx = particles[i].x - particles[j].x;
+                    const dy = particles[i].y - particles[j].y;
+                    const distance = Math.sqrt(dx * dx + dy * dy);
+                    
+                    if (distance < 150) {
+                        ctx.beginPath();
+                        ctx.strokeStyle = isLight ? `rgba(2, 132, 199, ${0.2 * (1 - distance/150)})` : `rgba(0, 212, 255, ${0.2 * (1 - distance/150)})`;
+                        ctx.lineWidth = 1.5;
+                        ctx.moveTo(particles[i].x, particles[i].y);
+                        ctx.lineTo(particles[j].x, particles[j].y);
+                        ctx.stroke();
+                    }
+                }
+            }
             requestAnimationFrame(animateParticles);
         }
         animateParticles();
