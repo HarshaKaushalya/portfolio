@@ -168,18 +168,16 @@
             height: 100%;
             z-index: -3;
             overflow: hidden;
-            background: #000; /* Deep black behind video */
         }
         #bg-video {
             width: 100%;
             height: 100%;
             object-fit: cover;
-            opacity: 0.6; /* Significantly increased from 0.15 */
-            filter: contrast(1.2) brightness(1.1); /* Boosted contrast */
+            opacity: 0.15;
             transition: opacity 0.3s;
         }
         [data-theme="light"] #bg-video {
-            opacity: 0.3; /* Increased from 0.05 */
+            opacity: 0.05;
         }
         .video-overlay {
             position: absolute;
@@ -187,10 +185,10 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(10, 10, 15, 0.5); /* Less aggressive dark overlay */
+            background: rgba(10, 10, 15, 0.7);
         }
         [data-theme="light"] .video-overlay {
-            background: rgba(248, 250, 252, 0.7);
+            background: rgba(248, 250, 252, 0.8);
         }
 
         /* Utility Classes */
