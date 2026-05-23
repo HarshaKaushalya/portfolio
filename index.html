@@ -375,40 +375,41 @@
             z-index: 10;
         }
         .hero-visuals {
-            flex: 1;
-            position: relative;
-            height: 500px;
+            position: absolute;
+            right: 0;
+            top: 0;
+            width: 60%;
+            height: 100%;
             display: none;
-            z-index: 5;
+            z-index: 1; /* Place it behind the hero content */
+            pointer-events: none;
         }
         @media (min-width: 992px) {
             .hero-visuals {
                 display: block;
             }
         }
-        .hero-img-main {
+        .hero-img-main, .hero-img-secondary {
             position: absolute;
-            right: 0;
-            top: 50px;
-            width: 320px;
-            height: 420px;
             object-fit: cover;
-            border-radius: 20px;
-            border: 2px solid rgba(0, 212, 255, 0.3);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-            animation: float 6s ease-in-out infinite;
+            opacity: 0.15;
+            mix-blend-mode: luminosity;
+            mask-image: radial-gradient(ellipse at center, rgba(0,0,0,1) 30%, rgba(0,0,0,0) 70%);
+            -webkit-mask-image: radial-gradient(ellipse at center, rgba(0,0,0,1) 30%, rgba(0,0,0,0) 70%);
+        }
+        .hero-img-main {
+            right: -10%;
+            top: 10%;
+            width: 600px;
+            height: 700px;
+            animation: float 15s ease-in-out infinite;
         }
         .hero-img-secondary {
-            position: absolute;
-            right: 220px;
-            top: 250px;
-            width: 260px;
-            height: 180px;
-            object-fit: cover;
-            border-radius: 15px;
-            border: 2px solid rgba(124, 58, 237, 0.3);
-            box-shadow: 0 15px 35px rgba(0,0,0,0.6);
-            animation: float 8s ease-in-out infinite reverse;
+            right: 350px;
+            top: 30%;
+            width: 500px;
+            height: 500px;
+            animation: float 18s ease-in-out infinite reverse;
         }
         @keyframes float {
             0%, 100% { transform: translateY(0); }
