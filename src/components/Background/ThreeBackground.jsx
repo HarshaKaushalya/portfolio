@@ -57,11 +57,24 @@ const ThreeBackground = () => {
       geometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
       geometry.setAttribute('color', new THREE.BufferAttribute(colors, 3));
 
+      // Create circular texture for particles
+      const particleCanvas = document.createElement('canvas');
+      particleCanvas.width = 32;
+      particleCanvas.height = 32;
+      const ctx = particleCanvas.getContext('2d');
+      ctx.beginPath();
+      ctx.arc(16, 16, 16, 0, Math.PI * 2);
+      ctx.fillStyle = 'white';
+      ctx.fill();
+      const particleTexture = new THREE.CanvasTexture(particleCanvas);
+
       const material = new THREE.PointsMaterial({
-        size: 0.2,
+        size: 0.25,
+        map: particleTexture,
+        alphaTest: 0.1,
         vertexColors: true,
         transparent: true,
-        opacity: 0.6,
+        opacity: 0.8,
         sizeAttenuation: true,
         blending: THREE.AdditiveBlending
       });
