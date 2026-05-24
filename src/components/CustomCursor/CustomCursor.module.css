@@ -1,0 +1,29 @@
+.customCursor {
+  position: fixed;
+  width: 8px;
+  height: 8px;
+  background-color: var(--primary);
+  border-radius: 50%;
+  pointer-events: none;
+  transform: translate(-50%, -50%);
+  z-index: 9999;
+  transition: width 0.2s, height 0.2s, background-color 0.2s;
+  box-shadow: 0 0 10px var(--primary);
+}
+.customCursorFollower {
+  position: fixed;
+  width: 32px;
+  height: 32px;
+  border: 1px solid var(--primary);
+  border-radius: 50%;
+  pointer-events: none;
+  transform: translate(-50%, -50%);
+  z-index: 9998;
+  transition: transform 0.1s ease-out, opacity 0.2s;
+}
+
+@media (max-width: 768px) {
+  .customCursor, .customCursorFollower {
+    display: none;
+  }
+}
