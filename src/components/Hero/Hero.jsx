@@ -79,7 +79,7 @@ const Hero = () => {
       <div className={styles.heroContainer}>
         <div className={`fade-in ${styles.heroContent}`}>
           <p className={styles.greeting}>Hello, I'm</p>
-          <h1 className={`gradient-text ${styles.name}`}>Harsha Kaushalya</h1>
+          <h1 className={`animated-gradient-text ${styles.name}`}>Harsha Kaushalya</h1>
           <div className={styles.rolesContainer}>
             <span ref={typedRef} className={styles.typedRoles}></span>
           </div>
