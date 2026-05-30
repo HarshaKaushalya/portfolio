@@ -87,7 +87,7 @@ const About = () => {
             </div>
           </div>
           
-          <div className="about-text fade-in">
+          <div className={styles.aboutText}>
             <p className={styles.bio}>
               I'm an <strong>Electrical and Electronics Engineering</strong> undergraduate with a profound passion for Cyber Security and AI. I bridge the gap between hardware and software, focusing on building secure, efficient, and intelligent systems.
             </p>

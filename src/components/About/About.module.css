@@ -170,10 +170,19 @@
   line-height: 1.6;
 }
 
+.aboutText {
+  z-index: 5;
+  position: relative;
+}
+
 @media (max-width: 768px) {
   .aboutContent {
     grid-template-columns: 1fr;
     text-align: center;
+  }
+  .avatarContainer {
+    width: 220px;
+    height: 220px;
   }
   .statsGrid {
     grid-template-columns: 1fr;
