@@ -9,7 +9,7 @@ const projectData = [
     tags: [{ label: "Hardware", class: "electronics" }, { label: "AI/ML", class: "aiml" }, { label: "Web", class: "web" }],
     description: "A full-stack hardware-software system performing real-time handwritten digit recognition (MNIST) using a custom Binarized Neural Network (BNN) on a Nexys A7-100T FPGA.",
     locked: false,
-    image: "/fpga.jpg",
+    image: "/portfolio/fpga.jpg",
     longDescription: {
       intro: "I designed and implemented a full-stack hardware-software system that performs real-time handwritten digit recognition (MNIST) using a custom Binarized Neural Network (BNN) running entirely on a Nexys A7-100T FPGA. Rather than using an off-the-shelf processor, I wrote custom Verilog RTL to perform hardware-accelerated inference. A modern web UI allows users to draw a digit, which is sent over a UART serial connection to the FPGA, where the hardware predicts the digit in real-time and sends the result back to the browser.",
       architecture: [
@@ -183,7 +183,11 @@ const Projects = () => {
                   <div className={styles.projectLinks}>
                     {!project.locked && (
                       <>
-                        <span className={styles.projectLink}><i className="fas fa-arrow-right"></i> {project.longDescription ? 'Read Case Study' : 'View Project'}</span>
+                        <a href="#" className={styles.projectLink} onClick={(e) => e.stopPropagation()}><i className="fab fa-github"></i> Code</a>
+                        <a href="#" className={styles.projectLink} onClick={(e) => e.stopPropagation()}><i className="fas fa-external-link-alt"></i> Demo</a>
+                        {project.longDescription && (
+                          <span className={styles.projectLink} style={{ marginLeft: 'auto' }}><i className="fas fa-arrow-right"></i> Details</span>
+                        )}
                       </>
                     )}
                   </div>
