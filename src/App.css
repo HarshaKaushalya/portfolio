@@ -56,7 +56,7 @@ body {
 .aurora-blob {
   position: absolute;
   border-radius: 50%;
-  filter: blur(80px);
+  /* Removed filter: blur(80px) for massive performance gain */
   will-change: transform;
 }
 .aurora-blob-1 {
@@ -110,8 +110,7 @@ body {
 /* ---- Utility Classes ---- */
 .glass {
   background: var(--card-bg2);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
+  /* Removed heavy backdrop-filter for scroll performance */
   border: 1px solid var(--border);
   box-shadow: var(--glass-shadow);
   transition: border-color 0.3s ease, box-shadow 0.3s ease;
