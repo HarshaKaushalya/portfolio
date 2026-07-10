@@ -36,8 +36,20 @@ const Hero = () => (
         </div>
       </div>
       <div className={`fade-in ${styles.heroVisuals}`}>
-        <img src="Electrical_tower_image.jpg" alt="Electrical Engineering" className={styles.heroImgMain} loading="eager" />
-        <img src="PCB_image.jpg" alt="Electronics" className={styles.heroImgSecondary} loading="eager" />
+        <div className={styles.techGraphic}>
+          <div className={styles.centerNode}>
+            <i className="fas fa-microchip"></i>
+          </div>
+          <div className={`${styles.orbit} ${styles.orbit1}`}>
+            <div className={`${styles.orbitNode} ${styles.node1}`}><i className="fas fa-bolt"></i></div>
+            <div className={`${styles.orbitNode} ${styles.node2}`}><i className="fas fa-brain"></i></div>
+          </div>
+          <div className={`${styles.orbit} ${styles.orbit2}`}>
+            <div className={`${styles.orbitNode} ${styles.node3}`}><i className="fas fa-code"></i></div>
+            <div className={`${styles.orbitNode} ${styles.node4}`}><i className="fas fa-network-wired"></i></div>
+          </div>
+          <div className={styles.glowBackdrop}></div>
+        </div>
       </div>
     </div>
     <a href="#about" className={styles.scrollIndicator}>
