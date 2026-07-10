@@ -59,7 +59,7 @@ const About = () => {
               I'm an <strong>Electrical and Information Engineering</strong> undergraduate at the University of Ruhuna with hands-on experience in Electrical Testing &amp; Design, Embedded Systems, and Machine Learning, building end-to-end solutions from hardware RTL design to software applications.
             </p>
             <p className={styles.bio}>
-              Passionate about advancing knowledge through innovation and research, with a proven track record of leadership — including Vice Chair of the IEEE Ruhuna Power Electronics Chapter and Editor of the Telecommunication Circle.
+              Passionate about advancing knowledge through innovation and research. My proven track record of leadership includes serving as Vice Chair of the IEEE Ruhuna Power Electronics Chapter and Editor of the Telecommunication Circle.
             </p>
 
             <div className={styles.interestTags}>
