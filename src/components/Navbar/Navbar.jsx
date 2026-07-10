@@ -2,9 +2,8 @@ import React, { useState, useEffect, useCallback } from 'react';
 import styles from './Navbar.module.css';
 
 const Navbar = () => {
-  const [scrolled, setScrolled] = useState(false);
-  const [menuActive, setMenuActive] = useState(false);
-  const [theme, setTheme] = useState('dark');
+  const [scrolled, setScrolled]       = useState(false);
+  const [menuActive, setMenuActive]   = useState(false);
   const [activeSection, setActiveSection] = useState('home');
 
   useEffect(() => {
@@ -13,62 +12,40 @@ const Navbar = () => {
       if (!ticking) {
         window.requestAnimationFrame(() => {
           setScrolled(window.scrollY > 50);
-          
           const sections = document.querySelectorAll('section, header');
           let current = '';
-          sections.forEach(section => {
-            const sectionTop = section.offsetTop;
-            const sectionHeight = section.clientHeight;
-            if (window.scrollY >= (sectionTop - sectionHeight / 3)) {
-              current = section.getAttribute('id');
-            }
+          sections.forEach(s => {
+            if (window.scrollY >= s.offsetTop - s.clientHeight / 3) current = s.getAttribute('id');
           });
           if (current) setActiveSection(current);
-          
           ticking = false;
         });
         ticking = true;
       }
     };
-
-    window.addEventListener('scroll', handleScroll);
+    window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const toggleTheme = useCallback(() => {
-    const root = document.documentElement;
-    const currentTheme = root.getAttribute('data-theme');
-    const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
-    root.setAttribute('data-theme', newTheme);
-    setTheme(newTheme);
-  }, []);
-
-  const toggleMenu = useCallback(() => {
-    setMenuActive(prev => !prev);
-  }, []);
-
-  const closeMenu = useCallback(() => {
-    setMenuActive(false);
-  }, []);
+  const toggleMenu = useCallback(() => setMenuActive(p => !p), []);
+  const closeMenu  = useCallback(() => setMenuActive(false), []);
 
   return (
     <nav className={`${styles.nav} ${scrolled ? styles.navScrolled : ''}`}>
-      <a href="#home" className={styles.logo}><span>H</span>K</a>
+      <a href="#home" className={styles.logo}>HK</a>
+
       <div className={`${styles.navLinks} ${menuActive ? styles.active : ''}`}>
-        <a href="#home" className={activeSection === 'home' ? styles.active : ''} onClick={closeMenu}>Home</a>
-        <a href="#about" className={activeSection === 'about' ? styles.active : ''} onClick={closeMenu}>About</a>
-        <a href="#skills" className={activeSection === 'skills' ? styles.active : ''} onClick={closeMenu}>Skills</a>
-        <a href="#projects" className={activeSection === 'projects' ? styles.active : ''} onClick={closeMenu}>Projects</a>
-        <a href="#contact" className={activeSection === 'contact' ? styles.active : ''} onClick={closeMenu}>Contact</a>
+        {[['#home','Home'],['#about','About'],['#skills','Skills'],['#projects','Projects'],['#contact','Contact']].map(([href, label]) => (
+          <a key={href} href={href} className={activeSection === href.slice(1) ? styles.active : ''} onClick={closeMenu}>{label}</a>
+        ))}
       </div>
+
       <div className={styles.navActions}>
-        <button className={styles.themeToggle} onClick={toggleTheme} title="Toggle Theme">
-          <i className={theme === 'dark' ? "fas fa-sun" : "fas fa-moon"}></i>
-        </button>
+        <a href="/portfolio/Harsha_CV.pdf" download className={`btn btn-primary ${styles.cvBtn}`}>
+          <i className="fas fa-download"></i> CV
+        </a>
         <div className={`${styles.menuToggle} ${menuActive ? styles.active : ''}`} onClick={toggleMenu}>
-          <span></span>
-          <span></span>
-          <span></span>
+          <span /><span /><span />
         </div>
       </div>
     </nav>

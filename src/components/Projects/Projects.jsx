@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef, useCallback } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import styles from './Projects.module.css';
 
 const projectData = [
@@ -153,39 +153,10 @@ const FILTERS = [
 ];
 
 const Projects = () => {
-  const sectionRef = useRef(null);
   const [filter, setFilter] = useState('all');
   const [selectedProject, setSelectedProject] = useState(null);
 
-  useEffect(() => {
-    let gsapInstance;
-    let observer;
-    const initProjects = async () => {
-      const gsapModule = await import('gsap');
-      const gsap = gsapModule.default;
-      const ScrollTriggerModule = await import('gsap/ScrollTrigger');
-      const ScrollTrigger = ScrollTriggerModule.default;
-      gsap.registerPlugin(ScrollTrigger);
-
-      observer = new IntersectionObserver((entries) => {
-        if (entries[0].isIntersecting) {
-          gsapInstance = gsap.from(sectionRef.current.querySelectorAll('.fade-in'), {
-            scrollTrigger: { trigger: sectionRef.current, start: "top 85%", once: true },
-            opacity: 0, y: 30, duration: 0.8, ease: "power2.out", stagger: 0.1
-          });
-          observer.disconnect();
-        }
-      }, { threshold: 0.1 });
-
-      if (sectionRef.current) observer.observe(sectionRef.current);
-    };
-    initProjects();
-    return () => {
-      if (observer) observer.disconnect();
-      if (gsapInstance) gsapInstance.kill();
-    };
-  }, []);
-
+  // Fade-in handled globally by App.jsx IntersectionObserver
   useEffect(() => {
     document.body.style.overflow = selectedProject ? 'hidden' : 'auto';
   }, [selectedProject]);
@@ -197,7 +168,7 @@ const Projects = () => {
   const visibleProjects = projectData.filter(p => filter === 'all' || p.categories.includes(filter));
 
   return (
-    <section id="projects" className="section-padding" ref={sectionRef}>
+    <section id="projects" className="section-padding">
       <div className="container">
         <h2 className="section-title fade-in">Featured <span>Projects</span></h2>
         <p className="section-subtitle fade-in">Real-world engineering solutions spanning hardware, AI, and full-stack development</p>

@@ -1,152 +1,105 @@
-import React, { useEffect, useRef } from 'react';
+import React from 'react';
 import styles from './Skills.module.css';
 
 const skillsData = [
   {
     icon: 'fas fa-bolt',
-    title: 'Electrical Engineering',
+    title: 'Electrical Testing & Design',
     skills: [
-      { icon: 'fas fa-bolt', label: 'Power Systems (HV/MV/LV)' },
-      { icon: 'fas fa-tools', label: 'Electrical Testing' },
-      { icon: 'fas fa-drafting-compass', label: 'ETAP / DiaLux / PVSyst' },
-      { icon: 'fas fa-satellite-dish', label: 'Signal Processing' },
-      { icon: 'fas fa-laptop-code', label: 'MATLAB / Simulink' },
-      { icon: 'fas fa-plug', label: 'Protection Relay Testing' },
-    ]
+      { icon: 'fas fa-plug',            label: 'Earth Resistance Testing' },
+      { icon: 'fas fa-bolt',            label: 'Loop Impedance Testing' },
+      { icon: 'fas fa-shield-alt',      label: 'Insulation Resistance Testing' },
+      { icon: 'fas fa-cogs',            label: 'Protection Relay Testing' },
+      { icon: 'fas fa-temperature-high',label: 'Thermography Surveying' },
+      { icon: 'fas fa-drafting-compass',label: 'ETAP / PVSyst / DiaLux' },
+    ],
+  },
+  {
+    icon: 'fas fa-microchip',
+    title: 'Circuit, PCB & Digital Design',
+    skills: [
+      { icon: 'fas fa-draw-polygon',    label: 'Schematic Design' },
+      { icon: 'fas fa-layer-group',     label: 'PCB Design (KiCad / EasyEDA)' },
+      { icon: 'fas fa-desktop',         label: 'Circuit Simulation (Proteus)' },
+      { icon: 'fas fa-laptop-code',     label: 'MATLAB / Simulink' },
+      { icon: 'fas fa-microchip',       label: 'Arduino / ESP32' },
+      { icon: 'fas fa-network-wired',   label: 'Cisco Packet Tracer' },
+    ],
   },
   {
     icon: 'fas fa-memory',
     title: 'HDL & FPGA Design',
     skills: [
-      { icon: 'fas fa-microchip', label: 'Verilog / SystemVerilog' },
-      { icon: 'fas fa-memory', label: 'Xilinx Vivado' },
-      { icon: 'fas fa-code-branch', label: 'RISC-V Architecture' },
-      { icon: 'fas fa-project-diagram', label: 'FSM Design' },
-      { icon: 'fas fa-network-wired', label: 'UART / SPI / I2C' },
-      { icon: 'fas fa-cube', label: 'Embedded Systems' },
-    ]
+      { icon: 'fas fa-code',            label: 'Verilog / SystemVerilog' },
+      { icon: 'fas fa-tools',           label: 'AMD Vivado' },
+      { icon: 'fas fa-project-diagram', label: 'RISC-V Architecture' },
+      { icon: 'fas fa-sitemap',         label: 'FSM Design' },
+      { icon: 'fas fa-exchange-alt',    label: 'UART / SPI / I2C' },
+      { icon: 'fas fa-cube',            label: 'BRAM / DSP Inference' },
+    ],
+  },
+  {
+    icon: 'fas fa-code',
+    title: 'Programming Languages',
+    skills: [
+      { icon: 'fab fa-python',          label: 'Python' },
+      { icon: 'fab fa-js',              label: 'JavaScript / TypeScript' },
+      { icon: 'fas fa-copyright',       label: 'C / C++' },
+      { icon: 'fas fa-database',        label: 'SQL' },
+      { icon: 'fas fa-terminal',        label: 'Assembly (x86)' },
+      { icon: 'fas fa-terminal',        label: 'Bash / Shell' },
+    ],
   },
   {
     icon: 'fas fa-brain',
     title: 'AI & Machine Learning',
     skills: [
-      { icon: 'fab fa-python', label: 'Python / PyTorch' },
-      { icon: 'fas fa-robot', label: 'TensorFlow / Keras' },
-      { icon: 'fas fa-chart-line', label: 'Scikit-learn' },
-      { icon: 'fas fa-eye', label: 'Computer Vision (YOLO)' },
+      { icon: 'fas fa-fire',            label: 'PyTorch' },
+      { icon: 'fas fa-robot',           label: 'TensorFlow / Keras' },
+      { icon: 'fas fa-chart-line',      label: 'Scikit-learn' },
+      { icon: 'fas fa-eye',             label: 'Computer Vision (YOLOv8)' },
+      { icon: 'fas fa-table',           label: 'NumPy / Pandas / Matplotlib' },
       { icon: 'fas fa-project-diagram', label: 'CNN / BiLSTM / BNN' },
-      { icon: 'fas fa-database', label: 'NumPy / Pandas' },
-    ]
+    ],
   },
   {
     icon: 'fas fa-globe',
-    title: 'Full-Stack Development',
+    title: 'Web Development',
     skills: [
-      { icon: 'fab fa-react', label: 'React / Next.js' },
-      { icon: 'fab fa-node-js', label: 'Node.js / Express.js' },
-      { icon: 'fas fa-database', label: 'MySQL / MongoDB' },
-      { icon: 'fas fa-robot', label: 'LLM / RAG Systems' },
-      { icon: 'fab fa-js', label: 'TypeScript / JavaScript' },
-      { icon: 'fab fa-docker', label: 'Docker' },
-    ]
-  },
-  {
-    icon: 'fas fa-shield-alt',
-    title: 'Cyber Security',
-    skills: [
-      { icon: 'fas fa-network-wired', label: 'Network Security' },
-      { icon: 'fas fa-bug', label: 'Penetration Testing' },
-      { icon: 'fab fa-linux', label: 'Kali Linux' },
-      { icon: 'fas fa-search', label: 'Wireshark' },
-      { icon: 'fas fa-user-secret', label: 'Ethical Hacking' },
-      { icon: 'fas fa-code', label: 'Reverse Engineering' },
-    ]
-  },
-  {
-    icon: 'fas fa-tools',
-    title: 'Tools & Platforms',
-    skills: [
-      { icon: 'fab fa-git-alt', label: 'Git / GitHub' },
-      { icon: 'fas fa-microchip', label: 'Arduino / ESP32' },
-      { icon: 'fas fa-drafting-compass', label: 'KiCad / Proteus' },
-      { icon: 'fas fa-network-wired', label: 'Cisco Packet Tracer' },
-      { icon: 'fab fa-figma', label: 'Figma' },
-      { icon: 'fas fa-terminal', label: 'Bash / Shell' },
-    ]
+      { icon: 'fab fa-react',           label: 'MERN Stack / Next.js' },
+      { icon: 'fab fa-node-js',         label: 'Express.js' },
+      { icon: 'fas fa-database',        label: 'MySQL / MongoDB' },
+      { icon: 'fas fa-robot',           label: 'RAG / LLM Integration (Ollama)' },
+      { icon: 'fas fa-eye',             label: 'OpenCV / YOLOv8 Web Apps' },
+      { icon: 'fab fa-docker',          label: 'Docker' },
+    ],
   },
 ];
 
-const Skills = () => {
-  const sectionRef = useRef(null);
-
-  useEffect(() => {
-    let gsapInstance;
-    let observer;
-
-    const initSkills = async () => {
-      const gsapModule = await import('gsap');
-      const gsap = gsapModule.default;
-      const ScrollTriggerModule = await import('gsap/ScrollTrigger');
-      const ScrollTrigger = ScrollTriggerModule.default;
-      gsap.registerPlugin(ScrollTrigger);
-
-      observer = new IntersectionObserver((entries) => {
-        if (entries[0].isIntersecting) {
-          gsapInstance = gsap.context(() => {
-            gsap.utils.toArray(`.${styles.skillCategory}`).forEach((category, i) => {
-              gsap.from(category, {
-                scrollTrigger: { trigger: category, start: "top 88%", once: true },
-                opacity: 0, y: 40, duration: 0.7, ease: "power2.out", delay: i * 0.05
-              });
-              const badges = category.querySelectorAll(`.${styles.skillBadge}`);
-              gsap.from(badges, {
-                scrollTrigger: { trigger: category, start: "top 85%", once: true },
-                opacity: 0, y: 15, stagger: 0.04, duration: 0.4, ease: "back.out(1.5)", delay: 0.2
-              });
-            });
-          }, sectionRef);
-          observer.disconnect();
-        }
-      }, { threshold: 0.1 });
-
-      if (sectionRef.current) observer.observe(sectionRef.current);
-    };
-
-    initSkills();
-    return () => {
-      if (observer) observer.disconnect();
-      if (gsapInstance) gsapInstance.revert();
-    };
-  }, []);
-
-  return (
-    <section id="skills" className="section-padding" ref={sectionRef}>
-      <div className="container">
-        <h2 className="section-title fade-in">Technical <span>Arsenal</span></h2>
-        <p className="section-subtitle fade-in">A comprehensive toolkit built through academic research and industry practice</p>
-
-        <div className={styles.skillsContainer}>
-          {skillsData.map((cat) => (
-            <div key={cat.title} className={`${styles.skillCategory} glass`}>
-              <div className={styles.categoryHeader}>
-                <div className={styles.categoryIcon}>
-                  <i className={cat.icon}></i>
-                </div>
-                <h3 className={styles.categoryTitle}>{cat.title}</h3>
-              </div>
-              <div className={styles.skillBadges}>
-                {cat.skills.map(skill => (
-                  <span key={skill.label} className={styles.skillBadge}>
-                    <i className={skill.icon}></i> {skill.label}
-                  </span>
-                ))}
-              </div>
+const Skills = () => (
+  <section id="skills" className="section-padding">
+    <div className="container">
+      <h2 className="section-title fade-in">Technical <span>Skills</span></h2>
+      <p className="section-subtitle fade-in">A toolkit built through academic training and industry practice</p>
+      <div className={styles.skillsContainer}>
+        {skillsData.map((cat, i) => (
+          <div key={cat.title} className={`${styles.skillCategory} glass fade-in`} style={{ transitionDelay: `${i * 0.05}s` }}>
+            <div className={styles.categoryHeader}>
+              <div className={styles.categoryIcon}><i className={cat.icon}></i></div>
+              <h3 className={styles.categoryTitle}>{cat.title}</h3>
             </div>
-          ))}
-        </div>
+            <div className={styles.skillBadges}>
+              {cat.skills.map(s => (
+                <span key={s.label} className={styles.skillBadge}>
+                  <i className={s.icon}></i> {s.label}
+                </span>
+              ))}
+            </div>
+          </div>
+        ))}
       </div>
-    </section>
-  );
-};
+    </div>
+  </section>
+);
 
 export default React.memo(Skills);

@@ -11,11 +11,9 @@
     "deploy": "gh-pages -d dist"
   },
   "dependencies": {
-    "gsap": "^3.12.5",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "three": "^0.160.0",
-    "typed.js": "^2.1.0"
+    "three": "^0.160.0"
   },
   "devDependencies": {
     "@types/react": "^18.2.43",

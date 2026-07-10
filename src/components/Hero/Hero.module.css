@@ -49,13 +49,16 @@
   letter-spacing: -1.5px;
 }
 .rolesContainer {
-  min-height: 40px;
   margin-bottom: 1.2rem;
+  overflow: hidden;
 }
 .typedRoles {
-  font-size: clamp(1.1rem, 2.5vw, 1.4rem);
+  display: block;
+  font-size: clamp(0.85rem, 1.8vw, 1rem);
   color: var(--muted);
-  font-weight: 400;
+  font-weight: 500;
+  letter-spacing: 0.2px;
+  line-height: 1.6;
 }
 .heroDesc {
   font-size: 1rem;
