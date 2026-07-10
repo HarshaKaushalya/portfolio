@@ -1,4 +1,4 @@
-import React, { Suspense, useState, useEffect } from 'react';
+import React, { Suspense, useState, useEffect, useRef } from 'react';
 
 const Navbar = React.lazy(() => import('./components/Navbar/Navbar'));
 const Hero = React.lazy(() => import('./components/Hero/Hero'));
@@ -8,39 +8,46 @@ const Projects = React.lazy(() => import('./components/Projects/Projects'));
 const Contact = React.lazy(() => import('./components/Contact/Contact'));
 const Footer = React.lazy(() => import('./components/Footer/Footer'));
 const CustomCursor = React.lazy(() => import('./components/CustomCursor/CustomCursor'));
-const Loader = React.lazy(() => import('./components/Loader/Loader'));
-const Particles = React.lazy(() => import('./components/Background/Particles'));
 const ThreeBackground = React.lazy(() => import('./components/Background/ThreeBackground'));
+const Loader = React.lazy(() => import('./components/Loader/Loader'));
 
-function App() {
+const App = () => {
   const [loading, setLoading] = useState(true);
+  const [scrollProgress, setScrollProgress] = useState(0);
 
   useEffect(() => {
-    const timer = setTimeout(() => {
-      setLoading(false);
-    }, 2500);
+    const timer = setTimeout(() => setLoading(false), 1800);
     return () => clearTimeout(timer);
   }, []);
 
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollTop = window.scrollY;
+      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+      const progress = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+      setScrollProgress(progress);
+    };
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
   return (
-    <>
-      <Suspense fallback={null}>
-        {loading && <Loader />}
-        <CustomCursor />
-        <ThreeBackground />
-        <Particles />
-        <Navbar />
-        <main>
-          <Hero />
-          <About />
-          <Skills />
-          <Projects />
-          <Contact />
-        </main>
-        <Footer />
-      </Suspense>
-    </>
+    <Suspense fallback={null}>
+      {loading && <Loader />}
+      <div className="scroll-progress" style={{ width: `${scrollProgress}%` }} />
+      <CustomCursor />
+      <ThreeBackground />
+      <Navbar />
+      <main>
+        <Hero />
+        <About />
+        <Skills />
+        <Projects />
+        <Contact />
+      </main>
+      <Footer />
+    </Suspense>
   );
-}
+};
 
 export default App;

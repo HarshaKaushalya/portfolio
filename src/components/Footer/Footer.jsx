@@ -31,13 +31,17 @@ const Footer = () => {
             <a href="https://github.com/HarshaKaushalya" target="_blank" rel="noopener noreferrer" className={styles.socialIcon} aria-label="GitHub">
               <i className="fab fa-github"></i>
             </a>
-            <a href="https://linkedin.com/in/harsha-kaushalya" target="_blank" rel="noopener noreferrer" className={styles.socialIcon} aria-label="LinkedIn">
+            <a href="https://www.linkedin.com/in/harsha-kaushalya-479ab5285/" target="_blank" rel="noopener noreferrer" className={styles.socialIcon} aria-label="LinkedIn">
               <i className="fab fa-linkedin-in"></i>
             </a>
-            <a href="mailto:contact@harsha.dev" className={styles.socialIcon} aria-label="Email">
+            <a href="mailto:harshakaushalya19@gmail.com" className={styles.socialIcon} aria-label="Email">
               <i className="fas fa-envelope"></i>
             </a>
+            <a href="https://harshakaushalya.github.io/portfolio/" target="_blank" rel="noopener noreferrer" className={styles.socialIcon} aria-label="Portfolio">
+              <i className="fas fa-globe"></i>
+            </a>
           </div>
+
           <p className={styles.copyright}>&copy; {new Date().getFullYear()} Harsha Kaushalya. All rights reserved.</p>
           <div className={styles.tagline}>
             Built with <i className="fas fa-heart"></i> & High Voltage
