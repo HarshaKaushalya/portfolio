@@ -75,13 +75,13 @@ const About = () => {
             <div className={styles.avatarInfo}>
               <div className={styles.infoChip}><i className="fas fa-map-marker-alt"></i> Galle, Sri Lanka</div>
               <div className={styles.infoChip}><i className="fas fa-university"></i> Univ. of Ruhuna</div>
-              <div className={styles.infoChip}><i className="fas fa-star"></i> CGPA: 3.8</div>
+              <div className={styles.infoChip}><i className="fas fa-graduation-cap"></i> B.Sc. Engineering</div>
             </div>
           </div>
 
           <div className={styles.aboutText}>
             <p className={styles.bio}>
-              I'm an <strong>Electrical and Information Engineering</strong> undergraduate at the University of Ruhuna with strong academic standing (CGPA: 3.8). I have hands-on experience in Electrical Testing &amp; Design, Embedded Systems, and Machine Learning, building end-to-end solutions from hardware RTL design to AI-powered web applications.
+              I'm an <strong>Electrical and Information Engineering</strong> undergraduate at the University of Ruhuna with hands-on experience in Electrical Testing &amp; Design, Embedded Systems, and Machine Learning, building end-to-end solutions from hardware RTL design to software applications.
             </p>
             <p className={styles.bio}>
               Passionate about advancing knowledge through innovation and research, with a proven track record of leadership — including Vice Chair of the IEEE Ruhuna Power Electronics Chapter and Editor of the Telecommunication Circle.
@@ -135,7 +135,7 @@ const About = () => {
                 <span className={styles.timelineDate}>Feb 2023 – Present</span>
                 <h4 className={styles.timelineTitle}>B.Sc. Electrical and Information Engineering</h4>
                 <p className={styles.timelineOrg}>University of Ruhuna · Galle, Sri Lanka</p>
-                <p className={styles.timelineDesc}>CGPA: 3.8 | Focusing on power systems, electronics design, embedded systems, and AI/ML applications.</p>
+                <p className={styles.timelineDesc}>Focusing on power systems, electronics design, embedded systems, and software engineering applications.</p>
               </div>
             </div>
           </div>

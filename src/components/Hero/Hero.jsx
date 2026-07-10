@@ -77,8 +77,8 @@ const Hero = () => {
             <span ref={typedRef} className={styles.typedRoles}></span>
           </div>
           <p className={styles.heroDesc}>
-            Electrical &amp; Information Engineering undergraduate at University of Ruhuna (CGPA: 3.8),
-            building end-to-end solutions from FPGA hardware design to AI-powered web applications.
+            Electrical &amp; Information Engineering undergraduate at the University of Ruhuna,
+            building end-to-end solutions from FPGA hardware design to full-stack web applications.
           </p>
           <div className={`fade-in ${styles.heroBtns}`}>
             <a href="/portfolio/Harsha_CV.pdf" download className="btn btn-primary" data-tooltip="Download PDF">

@@ -1,4 +1,4 @@
-import React, { Suspense, useState, useEffect, useRef } from 'react';
+import React, { Suspense, useState, useEffect } from 'react';
 
 const Navbar = React.lazy(() => import('./components/Navbar/Navbar'));
 const Hero = React.lazy(() => import('./components/Hero/Hero'));
@@ -8,7 +8,6 @@ const Projects = React.lazy(() => import('./components/Projects/Projects'));
 const Contact = React.lazy(() => import('./components/Contact/Contact'));
 const Footer = React.lazy(() => import('./components/Footer/Footer'));
 const CustomCursor = React.lazy(() => import('./components/CustomCursor/CustomCursor'));
-const ThreeBackground = React.lazy(() => import('./components/Background/ThreeBackground'));
 const Loader = React.lazy(() => import('./components/Loader/Loader'));
 
 const App = () => {
@@ -35,8 +34,12 @@ const App = () => {
     <Suspense fallback={null}>
       {loading && <Loader />}
       <div className="scroll-progress" style={{ width: `${scrollProgress}%` }} />
+      <div className="aurora-bg" aria-hidden="true">
+        <div className="aurora-blob aurora-blob-1"></div>
+        <div className="aurora-blob aurora-blob-2"></div>
+        <div className="aurora-blob aurora-blob-3"></div>
+      </div>
       <CustomCursor />
-      <ThreeBackground />
       <Navbar />
       <main>
         <Hero />
