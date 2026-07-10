@@ -21,7 +21,7 @@ const Hero = () => (
           building end-to-end solutions from FPGA hardware design to full-stack web applications.
         </p>
         <div className={styles.heroBtns}>
-          <a href="/portfolio/Harsha_CV.pdf" download className="btn btn-primary" data-tooltip="Download PDF">
+          <a href="/Harsha_CV.pdf" download className="btn btn-primary" data-tooltip="Download PDF">
             <i className="fas fa-download"></i> Download CV
           </a>
           <a href="#projects" className="btn btn-outline glass">

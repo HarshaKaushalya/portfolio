@@ -89,7 +89,7 @@ const About = () => {
 
             <div className={styles.timelineHeader}>
               <h3>Experience &amp; Education</h3>
-              <a href="/portfolio/Harsha_CV.pdf" download className="btn btn-outline" style={{fontSize:'0.82rem',padding:'0.45rem 1rem'}}>
+              <a href="/Harsha_CV.pdf" download className="btn btn-outline" style={{fontSize:'0.82rem',padding:'0.45rem 1rem'}}>
                 <i className="fas fa-file-pdf"></i> Full CV
               </a>
             </div>

@@ -41,7 +41,7 @@ const Navbar = () => {
       </div>
 
       <div className={styles.navActions}>
-        <a href="/portfolio/Harsha_CV.pdf" download className={`btn btn-primary ${styles.cvBtn}`}>
+        <a href="/Harsha_CV.pdf" download className={`btn btn-primary ${styles.cvBtn}`}>
           <i className="fas fa-download"></i> CV
         </a>
         <div className={`${styles.menuToggle} ${menuActive ? styles.active : ''}`} onClick={toggleMenu}>
