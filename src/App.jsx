@@ -7,12 +7,10 @@ const Skills   = React.lazy(() => import('./components/Skills/Skills'));
 const Projects = React.lazy(() => import('./components/Projects/Projects'));
 const Contact  = React.lazy(() => import('./components/Contact/Contact'));
 const Footer   = React.lazy(() => import('./components/Footer/Footer'));
-const CustomCursor = React.lazy(() => import('./components/CustomCursor/CustomCursor'));
 const Loader   = React.lazy(() => import('./components/Loader/Loader'));
 
 const App = () => {
-  const [loading, setLoading]         = useState(true);
-  const [scrollProgress, setScrollProgress] = useState(0);
+  const [loading, setLoading] = useState(true);
 
   // Loader
   useEffect(() => {
@@ -20,11 +18,13 @@ const App = () => {
     return () => clearTimeout(t);
   }, []);
 
-  // Scroll progress
+  // Native Scroll Progress (no React state updates = high performance)
   useEffect(() => {
+    const progressBar = document.getElementById('scroll-progress-bar');
+    if (!progressBar) return;
     const onScroll = () => {
-      const pct = window.scrollY / (document.documentElement.scrollHeight - window.innerHeight) * 100;
-      setScrollProgress(Math.min(pct, 100));
+      const pct = (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100;
+      progressBar.style.width = `${Math.min(pct, 100)}%`;
     };
     window.addEventListener('scroll', onScroll, { passive: true });
     return () => window.removeEventListener('scroll', onScroll);
@@ -46,13 +46,12 @@ const App = () => {
   return (
     <Suspense fallback={null}>
       {loading && <Loader />}
-      <div className="scroll-progress" style={{ width: `${scrollProgress}%` }} />
+      <div id="scroll-progress-bar" className="scroll-progress" style={{ width: '0%' }} />
       <div className="aurora-bg" aria-hidden="true">
         <div className="aurora-blob aurora-blob-1" />
         <div className="aurora-blob aurora-blob-2" />
         <div className="aurora-blob aurora-blob-3" />
       </div>
-      <CustomCursor />
       <Navbar />
       <main>
         <Hero />
